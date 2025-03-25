@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restructuring Code Task</title>
+</head>
+<body>
+  <h1 id="title">User List</h1>
+  <button id="reloadBtn">Reload Data</button>
+  <ul id="userList"></ul>
+
+  <script>
+    // Global variables to store fetched user data
+    let users = [];
+
+    // Immediately fetch users and display them
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
+        return response.json();
+      })
+      .then(data => {
+        users = data;
+        const userListEl = document.getElementById('userList');
+        userListEl.innerHTML = '';
+
+        for (let i = 0; i < users.length; i++) {
+          const li = document.createElement('li');
+          li.textContent = users[i].name + ' (' + users[i].email + ')';
+          li.addEventListener('click', function() {
+            alert('You clicked: ' + users[i].name);
+          });
+          userListEl.appendChild(li);
+        }
+      })
+      .catch(error => {
+        console.error('Fetch Error:', error);
+        const userListEl = document.getElementById('userList');
+        userListEl.innerHTML = '<li>Error fetching users.</li>';
+      });
+
+    // Handle the Reload button click
+    document.getElementById('reloadBtn').addEventListener('click', function() {
+      // Clear the current list first
+      const userListEl = document.getElementById('userList');
+      userListEl.innerHTML = '<li>Loading...</li>';
+
+      // Fetch again
+      fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not OK on reload');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Replace the users array
+          users = data;
+          userListEl.innerHTML = '';
+
+          // Optional: sort users by name before rendering
+          users.sort((a, b) => a.name.localeCompare(b.name));
+
+          // Render new list
+          for (let i = 0; i < users.length; i++) {
+            const li = document.createElement('li');
+            li.textContent = users[i].name + ' (' + users[i].email + ')';
+            li.addEventListener('click', function() {
+              alert('You clicked: ' + users[i].name);
+            });
+            userListEl.appendChild(li);
+          }
+        })
+        .catch(error => {
+          console.error('Reload Fetch Error:', error);
+          userListEl.innerHTML = '<li>Failed to reload data.</li>';
+        });
+    });
+
+    // DOM manipulation
+    let titleEl = document.getElementById('title');
+    titleEl.style.color = 'blue';
+    titleEl.addEventListener('mouseover', function() {
+      titleEl.style.textDecoration = 'underline';
+    });
+    titleEl.addEventListener('mouseout', function() {
+      titleEl.style.textDecoration = 'none';
+    });
+
+  </script>
+</body>
+</html>

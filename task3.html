@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task 3 - Syntax Errors</title>
+</head>
+<body>
+  <h1>Debugging Task 3: Syntax Errors</h1>
+
+  <script>
+    /*
+      There are 4 Bugs total.
+    */
+
+    // We'll greet multiple users and handle an array of fruits.
+
+    function greetUser(name)
+      console.log("Hello, " + name + !)
+
+      if (name === "Alice") {
+        console.log("Special greeting for Alice!");
+      else
+        console.log("Welcome, " + name + "!");
+      
+    // We'll call greetUser for two different names
+    greetUser("Alice");
+    greetUser("Bob");
+
+    // Now let's manipulate an array of fruits
+    let fruits = ["Apple", "Banana", "Cherry", "Orange"];
+
+    // We'll do a quick check: if array length > 3, log a message
+    if (fruits.length > 3) {
+      console.log("We have a good variety of fruits here!");
+    }
+
+    // We'll loop through the fruits with forEach and print them
+    fruits.forEach(fruit => {
+      console.log("Fruit: " + fruit);
+    
+    // Additional lines to inflate code size:
+    let uppercaseFruits = [];
+    for (let i = 0; i < fruits.length; i++) {
+      uppercaseFruits.push(fruits[i].toUpperCase());
+    }
+    console.log("Uppercased fruits:", uppercaseFruits);
+
+    // Another function that does basic math
+    function addNumbers(a, b) {
+      return a + b;
+    }
+
+    let sumResult = addNumbers(10, 5);
+    console.log("Sum of 10 and 5 is:", sumResult);
+
+    console.log("End of Task 1 script, check console for syntax errors.");
+  </script>
+</body>
+</html>

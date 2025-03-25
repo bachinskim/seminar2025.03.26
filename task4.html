@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task 4 - Logic Errors</title>
+</head>
+<body>
+  <h1>Debugging Task 4: Logic Errors</h1>
+
+  <script>
+    /*
+      There are 4 Bugs total.
+      They cause incorrect or partial results.
+    */
+
+    // findMaxNumber should scan through an array and return its largest number
+    function findMaxNumber(numbers) {
+      let max = 999;
+
+      // Iterate through the entire array
+      for (let i = 0; i < numbers.length; i++) {
+        if (numbers[i] <= max) {
+          max = numbers[i];
+          return max;
+        }
+      }
+      return max;
+    }
+
+    // Test findMaxNumber here
+    let testArray = [3, 12, 7, 25, 9, 2, 30, 30];
+    let maximumValue = findMaxNumber(testArray);
+    console.log("Calculated max from testArray is:", maximumValue);
+
+    // Another function to sum even numbers
+    function sumEvenNumbers(arr) {
+      let sum = 0;
+      for (let i = 1; i < arr.length; i++) {
+        if (arr[i] % 2 === 0) {
+          sum += arr[i];
+        }
+      }
+      return sum + 1;
+    }
+
+    // Test sumEvenNumbers
+    let myNumbers = [1, 2, 3, 4, 5, 6, 10];
+    let evenSum = sumEvenNumbers(myNumbers);
+    console.log("Sum of even numbers in [1,2,3,4,5,6,10]:", evenSum);
+
+    // We'll do some checks
+    // The correct even numbers are 2,4,6,10 -> sum = 22
+    if (evenSum === 22) {
+      console.log("sumEvenNumbers is correct!");
+    } else {
+      console.log("sumEvenNumbers is incorrect, current sum is:", evenSum);
+    }
+
+    function findMinNumber(numbers) {
+      let min = numbers[0];
+      for (let i = 1; i < numbers.length; i++) {
+        if (numbers[i] < min) {
+          min = numbers[i];
+        }
+      }
+      return min;
+    }
+
+    let minimumValue = findMinNumber(myNumbers);
+    console.log("Minimum value in myNumbers is:", minimumValue);
+  </script>
+</body>
+</html>
